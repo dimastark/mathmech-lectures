@@ -1,0 +1,22 @@
+dist: trusty
+
+script:
+- mkdir _build
+- pdflatex -interaction=nonstopmode -halt-on-error -output-directory _build src/*.tex
+
+after_success:
+- ./push-pdf.sh
+
+branches:
+  only:
+  - master
+
+addons:
+  apt:
+    packages:
+    - texlive-latex-recommended
+    - texlive-fonts-recommended
+    - texlive-latex-extra
+    - texlive-fonts-extra
+    - texlive-lang-cyrillic
+    - dvipng
